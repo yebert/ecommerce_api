@@ -1,5 +1,5 @@
 import ErrorResponse from "../utils/ErrorResponse.js";
-import Product from "../models/Product.js";
+import { Product, Category } from "../models/index.js";
 
 // GET /products ALL
 const getProducts = async (req, res) => {
@@ -15,7 +15,7 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   const id = req.params.id;
   try {
-    const product = await Product.findByPk(id);
+    const product = await Product.findByPk(id, { include: Category });
     if (!product) return res.status(404).json({ message: "Product not found" });
     res.json({ data: product });
   } catch (error) {
@@ -57,7 +57,7 @@ const deleteProduct = async (req, res) => {
     const product = await Product.findByPk(req.params.id);
     if (!product) return res.status(404).json({ error: "Product not found" });
     await product.destroy();
-    res.json({ message: "Product deleted" });
+    res.json({ message: "Product deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: "Error deleting product" });
   }

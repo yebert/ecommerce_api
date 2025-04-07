@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
+import categoryRouter from "./routers/categoryRouter.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", userRouter);
 app.use("/products", productRouter);
+app.use("/categories", categoryRouter);
 
 app.use((err, req, res, next) => {
   process.env.NODE_ENV !== "production" && console.log(err);
