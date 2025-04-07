@@ -4,9 +4,18 @@ import { Product, Category } from "../models/index.js";
 // GET /products ALL
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.findAll();
-    res.json({ data: products });
+    const { categoryId } = req.query;
+    let filter = {};
+    if (categoryId) {
+      filter = { categoryId };
+    }
+    console.log(filter);
+    const products = await Product.findAll({
+      where: filter,
+    });
+    res.json({ products });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Error fetching products" });
   }
 };
