@@ -7,13 +7,6 @@ export const getOrders = async (req, res) => {
       {
         model: OrderContent,
         as: "products",
-        include: [
-          {
-            model: Product,
-            as: "product",
-            attributes: ["id"],
-          },
-        ],
       },
     ],
   });

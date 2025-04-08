@@ -12,7 +12,6 @@ const getCategories = async (req, res) => {
 };
 
 const getCategoryById = async (req, res) => {
-  //   console.log("Received GET request to/users/:id");
   const id = req.params.id;
   try {
     const category = await Category.findByPk(id, { include: Product });
@@ -26,7 +25,6 @@ const getCategoryById = async (req, res) => {
 };
 
 const createCategory = async (req, res, next) => {
-  //   console.log("BODY: ", req.body);
   const { name } = req.body;
 
   if (!name) throw new ErrorResponse("name is required", 400);

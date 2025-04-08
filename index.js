@@ -5,7 +5,6 @@ import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import categoryRouter from "./routers/categoryRouter.js";
 import orderRouter from "./routers/orderRouter.js";
-import sequelize from "./db/index.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
