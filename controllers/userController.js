@@ -14,7 +14,6 @@ const getUsers = async (req, res) => {
 };
 
 const getUserById = async (req, res) => {
-  //   console.log("Received GET request to/users/:id");
   const id = req.params.id;
   try {
     const user = await User.findByPk(id);
@@ -27,7 +26,6 @@ const getUserById = async (req, res) => {
 };
 
 const createUser = async (req, res, next) => {
-  //   console.log("BODY: ", req.body);
   const { name, email, password } = req.body;
 
   if (!name || !email || !password)
@@ -40,22 +38,6 @@ const createUser = async (req, res, next) => {
   delete userOhnePassword.password;
   res.json(userOhnePassword);
 };
-
-//     return res
-//       .status(400)
-//       .json({ message: "name, email and password required" });
-
-//   try {
-//     const user = await User.create({ name, email, password });
-//     res.status(201).json({ message: "User successfully created.", data: user });
-//   } catch (error) {
-//     console.log(error);
-//     if (error.name === "SequelizeUniqueConstraintError") {
-//       return res.status(409).json({ message: "Email already in use" });
-//     }
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };
 
 const updateUser = async (req, res) => {
   const { id } = req.params;
